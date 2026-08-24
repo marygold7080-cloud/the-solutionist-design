@@ -1,0 +1,47 @@
+{
+  "name": "ContactSubmission",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Full name of the enquirer"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "service": {
+      "type": "string",
+      "description": "Service of interest"
+    },
+    "budget": {
+      "type": "string",
+      "description": "Approximate budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "description": "Desired timeline"
+    },
+    "message": {
+      "type": "string",
+      "description": "Project details"
+    },
+    "source_page": {
+      "type": "string",
+      "description": "Page the enquiry was sent from"
+    }
+  },
+  "required": [
+    "full_name",
+    "email",
+    "message"
+  ]
+}
