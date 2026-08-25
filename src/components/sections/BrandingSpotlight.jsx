@@ -34,11 +34,11 @@ export default function BrandingSpotlight() {
             </ButtonLink>
           </div>
         </div>
-        <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-3">
           <img
-            src="https://the-solutionist.design/wp-content/uploads/2026/06/project-6.png"
-            alt="Logo and identity design creative produced by The Solutionist Design"
-            className="h-auto w-full rounded-2xl object-cover"
+            src="/projects/project-6.png"
+            alt="The Solutionist Design identity creative work sample"
+            className="h-auto w-full rounded-xl object-cover"
             loading="lazy"
             decoding="async"
           />

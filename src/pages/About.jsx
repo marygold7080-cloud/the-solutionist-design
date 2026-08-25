@@ -44,7 +44,7 @@ export default function About() {
         <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
           <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3">
             <img
-              src="https://the-solutionist.design/wp-content/uploads/2026/06/about-img-1-e1780898031735.jpg"
+              src="/about-team.jpg"
               alt="The Solutionist Design team working together on a client digital project"
               className="h-auto w-full rounded-2xl object-cover"
               loading="lazy"

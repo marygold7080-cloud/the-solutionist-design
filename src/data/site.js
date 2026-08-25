@@ -3,7 +3,7 @@ export const site = {
   name: "The Solutionist Design",
   shortName: "The Solutionist Design",
   url: "https://the-solutionist.design",
-  logo: "https://the-solutionist.design/wp-content/uploads/2026/08/ae38ebf1-187f-409d-946c-9f76190dbbaf.png",
+  logo: "/site-logo.png",
   tagline: "Branding, digital development, AI solutions and marketing",
   description:
     "The Solutionist Design is a one-stop digital partner delivering branding, web and app development, AI automation and digital marketing for businesses that want to grow.",
