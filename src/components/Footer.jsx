@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-[#000000]">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
-          <Logo className="h-20 sm:h-24" />
+          <Logo className="h-12 sm:h-14" />
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-400">
             {site.name} is a one-stop digital partner for branding, web and app development, AI automation and
             digital marketing — helping businesses build, scale and lead with confidence.
