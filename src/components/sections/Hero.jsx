@@ -13,24 +13,34 @@ export default function Hero() {
     if (video) {
       video.defaultMuted = true;
       video.muted = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setVideoLoaded(true))
-          .catch(() => {
-            // Retry on user interaction if needed
-            const handleUserInteraction = () => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(() => {});
-                setVideoLoaded(true);
-              }
-              window.removeEventListener("click", handleUserInteraction);
-              window.removeEventListener("scroll", handleUserInteraction);
-            };
-            window.addEventListener("click", handleUserInteraction, { once: true });
-            window.addEventListener("scroll", handleUserInteraction, { once: true, passive: true });
-          });
-      }
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      const attemptPlay = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => setVideoLoaded(true))
+            .catch(() => {
+              // Browser autoplay policy might require interaction
+              const triggerPlay = () => {
+                if (videoRef.current) {
+                  videoRef.current.play().catch(() => {});
+                  setVideoLoaded(true);
+                }
+                window.removeEventListener("touchstart", triggerPlay);
+                window.removeEventListener("click", triggerPlay);
+                window.removeEventListener("scroll", triggerPlay);
+              };
+              window.addEventListener("touchstart", triggerPlay, { once: true, passive: true });
+              window.addEventListener("click", triggerPlay, { once: true, passive: true });
+              window.addEventListener("scroll", triggerPlay, { once: true, passive: true });
+            });
+        }
+      };
+
+      attemptPlay();
     }
   }, []);
 
@@ -44,11 +54,13 @@ export default function Hero() {
           loop
           muted
           playsInline
+          webkit-playsinline="true"
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
+          onPlaying={() => setVideoLoaded(true)}
           onPlay={() => setVideoLoaded(true)}
           className={`h-full w-full object-cover scale-105 transition-opacity duration-700 ${
-            videoLoaded ? "opacity-90" : "opacity-60"
+            videoLoaded ? "opacity-95" : "opacity-70"
           }`}
         >
           <source src="/hero-background.mp4" type="video/mp4" />

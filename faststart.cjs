@@ -74,17 +74,22 @@ function makeFastStart(inputPath, outputPath) {
   fs.closeSync(fd);
 
   console.log(`Successfully wrote FastStart video to ${outputPath}`);
+  return true;
 }
 
 const input = path.resolve(__dirname, 'public/hero-background.mp4');
 const tempOutput = path.resolve(__dirname, 'public/hero-background-faststart.mp4');
 
-makeFastStart(input, tempOutput);
+const transformed = makeFastStart(input, tempOutput);
 
-// Replace original with faststart version
-fs.copyFileSync(tempOutput, input);
-fs.copyFileSync(tempOutput, path.resolve(__dirname, 'dist/hero-background.mp4'));
-fs.copyFileSync(tempOutput, 'C:\\Users\\FUJITU\\Desktop\\hero-background.mp4');
-fs.unlinkSync(tempOutput);
+if (transformed && fs.existsSync(tempOutput)) {
+  fs.copyFileSync(tempOutput, input);
+  fs.copyFileSync(tempOutput, path.resolve(__dirname, 'dist/hero-background.mp4'));
+  try { fs.copyFileSync(tempOutput, 'C:\\Users\\FUJITU\\Desktop\\hero-background.mp4'); } catch (e) {}
+  fs.unlinkSync(tempOutput);
+} else {
+  fs.copyFileSync(input, path.resolve(__dirname, 'dist/hero-background.mp4'));
+  try { fs.copyFileSync(input, 'C:\\Users\\FUJITU\\Desktop\\hero-background.mp4'); } catch (e) {}
+}
 
-console.log('FastStart hero-background.mp4 ready and copied to Desktop!');
+console.log('FastStart hero-background.mp4 ready in public/, dist/ and copied to Desktop!');
